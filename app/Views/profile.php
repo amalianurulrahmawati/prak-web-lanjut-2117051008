@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<?php echo base_url('./css/style.css');?>">
+
 </head>
 <!-- <body>
     <div class="container">
@@ -33,7 +33,7 @@
 <center>
 <table>
     <center>
-    <img src="img/amalia.jpg">
+
             <tr>
                 <!-- <td>Nama</td>
                 <td>:</td> -->
@@ -54,4 +54,4 @@
 </center>
 
 </body>
-</html>
+

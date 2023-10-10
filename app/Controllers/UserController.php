@@ -56,21 +56,21 @@ class UserController extends BaseController{
         // ];
 
         //$kelasModel = new KelasModel();
-        $kelas = $kelasModel->getKelas();
+        //$kelas = $kelasModel->getKelas();
         $kelas = $this->kelasModel->getKelas();
 
 
-        // session();
-        // if (session('validation') != null) {
-        //     $validation = session('validation');
-        // } else {
-        //     $validation = \Config\Services::validation();
-        // }
+        session();
+        if (session('validation') != null) {
+            $validation = session('validation');
+        } else {
+            $validation = \Config\Services::validation();
+        }
 
         $data = [
             'title' => 'Create User',
             'kelas' => $kelas,
-            //'validation' => $validation
+            'validation' => $validation
         ];
 
         return view('create_user', $data);
@@ -80,19 +80,31 @@ class UserController extends BaseController{
         //dd($this->request->getVar());
         //$userModel = new UserModel();
         // dd($this->request->getVar('kelas'));
-        // if(!$this->validate([
-        //     'npm' => [
-        //         'rules' => 'required|is_unique[user.npm]',
-        //         'errors' => [
-        //             'required' => '{field} NPM harus diisi',
-        //             'is_unique' => '{field} NPM sudah ada'
-        //      ]
-        //    ]
-        // ]))
-        // {
-        //     $validation = \Config\Services::validation();
-        //     return redirect()->to('/user/create')->withInput()->with('validation', $validation);
-        // }
+
+        $path = 'assets/uploads/img/' ;
+
+        $foto = $this->request->getFile('foto');
+        
+        $name = $foto->getRandomName();
+        
+
+        if($foto->move($path, $name)){
+            $foto = base_url($path . $name);
+        }
+
+        if(!$this->validate([
+            'npm' => [
+                'rules' => 'required|is_unique[user.npm]',
+                'errors' => [
+                    'required' => '{field} NPM harus diisi',
+                    'is_unique' => '{field} NPM sudah ada'
+             ]
+           ]
+        ]))
+        {
+            $validation = \Config\Services::validation();
+            return redirect()->to('/user/create')->withInput()->with('validation', $validation);
+        }
 
         // $userModel->saveUser([
         //     'nama' => $this->request->getVar('nama'),
@@ -100,11 +112,11 @@ class UserController extends BaseController{
         //     'npm'=> $this->request->getVar('npm'),
         // ]);
 
-        // $data = [
-        //     'nama' => $this->request->getVar('nama'),
-        //     'kelas' => $this->request->getVar('kelas'),
-        //     'npm' => $this->request->getVar('npm'),
-        // ];
+        $data = [
+            'nama' => $this->request->getVar('nama'),
+            'kelas' => $this->request->getVar('kelas'),
+            'npm' => $this->request->getVar('npm'),
+        ];
         
         // return view('profile', $data);
         
@@ -112,9 +124,20 @@ class UserController extends BaseController{
             'nama' => $this->request->getVar('nama'),
             'id_kelas' => $this->request->getVar('kelas'),
             'npm' => $this->request->getVar('npm'),
+            'foto' => $foto
            ]);
     
             return redirect()->to('/user');
     
+    }
+    public function show($id){
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title'  => 'Profile',
+            'user'      => $user,
+        ];
+
+        return view('profile', $data);
     }
 }

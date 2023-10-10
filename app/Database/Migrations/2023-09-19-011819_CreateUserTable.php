@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateKelasTable extends Migration
+class CreateUserTable extends Migration
 {
     public function up()
     {
@@ -12,13 +12,22 @@ class CreateKelasTable extends Migration
         $this->forge->addField([
             'id' => [
                 'type'              => 'INT',
-                'constraint'        => 5,
+                'constraint'        => 11,
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
-            'nama_kelas' => [
+            'nama' => [
+                'type'              => 'VARCHAR',
+                'constraint'        => '255',
+            ],
+            'npm' => [
                 'type'              => 'VARCHAR',
                 'constraint'        => '10',
+            ],
+            'id_kelas' => [
+                'type'              => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
             ],
             'created_at' => [
                 'type'              => 'DATETIME',
@@ -35,12 +44,13 @@ class CreateKelasTable extends Migration
         ]);
 
         $this->forge->addKey('id', true, true);
-        $this->forge->createTable('kelas');
+        $this->forge->addForeignKey('id_kelas', 'kelas', 'id');
+        $this->forge->createTable('user');
     }
 
     public function down()
     {
         //
-        $this->forge->dropTable('kelas',true);
+        $this->forge->dropTable('user', true);
     }
 }

@@ -40,24 +40,18 @@
 <center>
 <table>
     <center>
-
-            <tr>
-                <!-- <td>Nama</td>
-                <td>:</td> -->
-                <td>Nama : <?=$nama ?></td>
-            </tr>
-            <tr>
-                <!-- <td>Kelas</td>
-                <td>:</td> -->
-                <td>Kelas : <?=$kelas ?></td>
-            </tr>        
-            <tr>
-                <!-- <td>NPM</td>
-                <td>:</td> -->
-                <td>Npm : <?=$npm ?></td>
-            </tr>
-        <center>
-    </table>
+        <div class="container">
+            <div class="w-100 d-grid border gap-2" style="height: 100vh; place-content: center;">
+                <div class="w-50 text-center border mx-auto">
+                    <img src="<?= $user['foto'] ?? '<default-foto>' ?>"  alt="">
+                </div>
+                <center><div class="..."><?= $user['nama'] ?></div>
+                <center><div class="..."><?= $user['npm'] ?></div>
+                <center><div class="..."><?= $user['nama_kelas'] ?></div>
+            </div>
+        </div>
+    <center>
+</table>
 </center>
 
 </body>

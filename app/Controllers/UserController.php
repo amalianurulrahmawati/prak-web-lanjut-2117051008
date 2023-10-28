@@ -190,4 +190,5 @@ class UserController extends BaseController{
         return redirect()->to(base_url('/user'))
         ->with('success', 'Berhasil Menghapus Data');
     }
+    
 }

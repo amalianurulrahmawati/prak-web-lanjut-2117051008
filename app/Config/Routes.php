@@ -2,6 +2,7 @@
 
 use App\Controllers\UserController;
 use CodeIgniter\Router\RouteCollection;
+use App\Controllers\KelasController;
 use App\Controllers\Home;
 use App\Models\UserModel;
 

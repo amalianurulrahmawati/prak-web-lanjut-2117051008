@@ -27,14 +27,12 @@
                 
 
                 <input type="" name="npm" class="form-control <?= ($validation->hasError('npm')) ? 'is-invalid' : '' ; ?>" id="npm">
-                            <div class="invalid-feedback">
-                                <?= $validation->getError('npm'); ?>
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('npm'); ?>
                 </div>
-                <label class="input-group-text"  for="foto">Upload</label>
-                                <input type="file" class="form-control" name='foto' id="foto">
-
-
-                                <button type="submit">Submit</button>
+                <!-- <label class="input-group-text"  for="foto">Upload</label> -->
+                    <input type="file" class="form-control" name='foto' id="foto">
+                    <button type="submit">Submit</button>
                             
             </form>
             
